@@ -1,2 +1,8 @@
 .DS_Store
-samples/config/buzzdata.yml
+config/buzzdata.yml
+*.gem
+.bundle
+.yardoc
+Gemfile.lock
+doc/*
+pkg/*
