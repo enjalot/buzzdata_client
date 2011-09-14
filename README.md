@@ -36,12 +36,27 @@ For example, to test if your API key works, try this url:
 You should get back a JSON object with your username in it, confirming that the key is yours and has 
 authenticated properly.
 
+## Rate Limits
+
+The API currently limits the requests you can make against it hourly. If you need more requests than that, please contact us and we'll let you know.
+
+We have provided two response headers with each request to the API with Rate Limiting Information. They are returned from every API call.
+
+    X-RateLimit-Limit: 5000
+    X-RateLimit-Remaining: 4998
+
+`X-RateLimit-Limit` is your current limit per hour. `X-RateLimit-Remaining` is how many requests you have left.
+
+
 ## Downloading Data
 
 Before you can download data, you need to create a `download_request`. If successful you will be given a
 url to download the data from.
 
 POST https://buzzdata.com/api/:username/:dataset/download_request
+
+`:username` is your username: ex: 'eviltrout'
+`:dataset` is the short name (url name) of the dataset you are uploading to. For example: 'b-list-celebrities'
 
 POST Parameters:
 
