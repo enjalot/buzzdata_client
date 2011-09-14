@@ -36,14 +36,14 @@ class Buzzdata
               raise Buzzdata::Error, "API key missing from configuration file (#{config_file})"
             end
           else
-            raise Buzzdata::Error, 'Configuration file improperly formatted (not a Hash)'
+            raise Buzzdata::Error, "Configuration file improperly formatted (not a Hash: #{config_file})"
           end
         rescue *YAML_ERRORS
-          raise Buzzdata::Error, 'Configuration file improperly formatted (invalid YAML)'
+          raise Buzzdata::Error, "Configuration file improperly formatted (invalid YAML: #{config_file})"
         rescue Errno::EACCES
-          raise Buzzdata::Error, 'Configuration file unreadable (Permission denied)'
+          raise Buzzdata::Error, "Configuration file unreadable (Permission denied: #{config_file})"
         rescue Errno::ENOENT
-          raise Buzzdata::Error, 'Configuration file missing (No such file or directory)'
+          raise Buzzdata::Error, "Configuration file missing (No such file or directory: #{config_file})"
         end
       end
 
