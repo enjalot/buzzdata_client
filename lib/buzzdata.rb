@@ -15,19 +15,35 @@ class Buzzdata
     
     @api_key = api_key
     
-    config_file = opts[:config_file] || "config/buzzdata.yml"
-    
     # If the API Key is missing, try to load it from a yml
-    if File.exist?("config/buzzdata.yml")
-      config = YAML.load_file("config/buzzdata.yml")
-      
-      if config
-        @api_key ||= config['api_key'] 
-        @base_url = config['base_url']
+    if @api_key.nil?
+      config_file = File.expand_path(opts[:config_file] || 'config/buzzdata.yml')
+
+      # If the user set the config file, we want to raise errors.
+      if opts[:config_file] || File.exist?(config_file)
+        begin
+          config = YAML.load_file config_file
+          if Hash === config
+            if config['api_key']
+              @api_key = config['api_key']
+              @base_url = config['base_url']
+            else
+              raise Buzzdata::Error, 'API key missing from configuration file'
+            end
+          else
+            raise Buzzdata::Error, 'Configuration file improperly formatted (not a Hash)'
+          end
+        rescue Psych::SyntaxError
+          raise Buzzdata::Error, 'Configuration file improperly formatted (invalid YAML)'
+        rescue Errno::EACCES
+          raise Buzzdata::Error, 'Configuration file unreadable (Permission denied)'
+        rescue Errno::ENOENT
+          raise Buzzdata::Error, 'Configuration file missing (No such file or directory)'
+        end
       end
+
+      raise Buzzdata::Error.new('No API key provided') if @api_key.nil?
     end
-    
-    raise Buzzdata::Error.new('No API Key Provided') if @api_key.nil?
   end
 
   def new_upload_request(dataset)
