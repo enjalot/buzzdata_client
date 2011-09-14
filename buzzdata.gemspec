@@ -4,7 +4,7 @@ require "buzzdata/version"
 
 Gem::Specification.new do |s|
   s.name        = "buzzdata"
-  s.version     = BuzzData::VERSION
+  s.version     = Buzzdata::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["BuzzData"]
   s.email       = ["support@buzzdata.com"]
