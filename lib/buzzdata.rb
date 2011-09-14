@@ -33,7 +33,7 @@ class Buzzdata
               @api_key = config['api_key']
               @base_url = config['base_url']
             else
-              raise Buzzdata::Error, 'API key missing from configuration file'
+              raise Buzzdata::Error, "API key missing from configuration file (#{config_file})"
             end
           else
             raise Buzzdata::Error, 'Configuration file improperly formatted (not a Hash)'
