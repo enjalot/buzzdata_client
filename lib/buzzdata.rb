@@ -9,6 +9,11 @@ require_relative 'buzzdata/rest_helpers'
 require_relative 'buzzdata/upload'
 
 class Buzzdata
+  YAML_ERRORS = [ArgumentError]
+  if defined?(Psych) && defined?(Psych::SyntaxError)
+    YAML_ERRORS << Psych::SyntaxError
+  end
+
   include RestHelpers
   
   def initialize(api_key=nil, opts={})
@@ -33,7 +38,7 @@ class Buzzdata
           else
             raise Buzzdata::Error, 'Configuration file improperly formatted (not a Hash)'
           end
-        rescue Psych::SyntaxError
+        rescue *YAML_ERRORS
           raise Buzzdata::Error, 'Configuration file improperly formatted (invalid YAML)'
         rescue Errno::EACCES
           raise Buzzdata::Error, 'Configuration file unreadable (Permission denied)'
