@@ -1,5 +1,6 @@
 .DS_Store
 config/buzzdata.yml
+spec/fixtures/unreadable.yml
 *.gem
 .bundle
 .yardoc
