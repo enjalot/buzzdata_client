@@ -29,6 +29,11 @@ If your account has the ability to upload data to a dataset, you can do so like 
 
     >> buzzdata.upload_data 'eviltrout/b-list-celebrities', File.new('datasets/celebrities.csv')
 
+## List of usable Licenses 
+
+    >> buzzdata.licenses
+
+  
 
 # BuzzData API 
 
@@ -161,3 +166,18 @@ one second in most cases.
 
 Note: If you receive a status of 'Unknown' it means the file has not begun processing yet. If you 
 continue to poll it will move to 'created'
+
+# Licenses
+
+When creating a dataset, it is necessary to supply a valid license for the data. You can query the available licenses by:
+
+GET https://buzzdata.com/api/licenses
+
+Returns JSON:
+
+  [
+    {"id":"cc0"},
+    {"id":"pdm"},
+    {"id":"cc_by"}
+    ...
+  ]

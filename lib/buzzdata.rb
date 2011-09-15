@@ -80,6 +80,10 @@ class Buzzdata
     result['dataset']
   end
 
+  def licenses
+    get_json(url_for("licenses"))
+  end
+
   def download_data(dataset)
     raw_get(download_path(dataset))
   end
