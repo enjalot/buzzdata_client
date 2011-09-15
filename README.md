@@ -19,7 +19,7 @@ To download data from a dataset, just do this:
 
 ## Dataset Information
 
-To get information about a dataset is easy too:
+Retrieving information about a dataset is easy too:
 
     >> buzzdata.dataset_overview 'eviltrout/b-list-celebrities'
 
