@@ -17,6 +17,12 @@ To download data from a dataset, just do this:
 
     >> buzzdata.download_data 'eviltrout/b-list-celebrities'
 
+## Dataset Information
+
+To get information about a dataset is easy too:
+
+    >> buzzdata.dataset_overview 'eviltrout/b-list-celebrities'
+
 ## Uploading Data
 
 If your account has the ability to upload data to a dataset, you can do so like this:
@@ -47,6 +53,27 @@ We have provided two response headers with each request to the API with Rate Lim
 
 `X-RateLimit-Limit` is your current limit per hour. `X-RateLimit-Remaining` is how many requests you have left.
 
+# Datasets
+
+## Dataset Details (Overview)
+
+To retrieve information about a dataset, simply make a GET:
+
+GET https://buzzdata.com/api/:username/:dataset
+
+Returns JSON that looks like this:
+
+    {"dataset":
+      {"id":"eviltrout/b-list-celebrities",
+       "username":"eviltrout",
+       "shortname":"b-list-celebrities",
+       "name":"B-List Celebrities",
+       "readme":"Here's a list of B-List Celebrities that I've curated.",
+       "public":true,
+       "license":"cc0",
+       "published":true,
+       "created_at":"2011-07-12T14:31:21-04:00",
+       "data_updated_at":"2011-07-12T14:41:52-04:00"}}
 
 ## Downloading Data
 

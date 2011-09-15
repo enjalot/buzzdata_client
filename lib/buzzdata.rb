@@ -75,6 +75,11 @@ class Buzzdata
     result['download_request']['url']
   end
   
+  def dataset_overview(dataset)
+    result = get_json(url_for(dataset))
+    result['dataset']
+  end
+
   def download_data(dataset)
     raw_get(download_path(dataset))
   end
