@@ -9,6 +9,11 @@ require_relative 'buzzdata/rest_helpers'
 require_relative 'buzzdata/upload'
 
 class Buzzdata
+  YAML_ERRORS = [ArgumentError]
+  if defined?(Psych) && defined?(Psych::SyntaxError)
+    YAML_ERRORS << Psych::SyntaxError
+  end
+
   include RestHelpers
   
   def initialize(api_key=nil, opts={})
@@ -28,17 +33,17 @@ class Buzzdata
               @api_key = config['api_key']
               @base_url = config['base_url']
             else
-              raise Buzzdata::Error, 'API key missing from configuration file'
+              raise Buzzdata::Error, "API key missing from configuration file (#{config_file})"
             end
           else
-            raise Buzzdata::Error, 'Configuration file improperly formatted (not a Hash)'
+            raise Buzzdata::Error, "Configuration file improperly formatted (not a Hash: #{config_file})"
           end
-        rescue Psych::SyntaxError
-          raise Buzzdata::Error, 'Configuration file improperly formatted (invalid YAML)'
+        rescue *YAML_ERRORS
+          raise Buzzdata::Error, "Configuration file improperly formatted (invalid YAML: #{config_file})"
         rescue Errno::EACCES
-          raise Buzzdata::Error, 'Configuration file unreadable (Permission denied)'
+          raise Buzzdata::Error, "Configuration file unreadable (Permission denied: #{config_file})"
         rescue Errno::ENOENT
-          raise Buzzdata::Error, 'Configuration file missing (No such file or directory)'
+          raise Buzzdata::Error, "Configuration file missing (No such file or directory: #{config_file})"
         end
       end
 

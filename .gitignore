@@ -1,5 +1,5 @@
 .DS_Store
-config/buzzdata.yml
+buzzdata.yml
 spec/fixtures/unreadable.yml
 *.gem
 .bundle
