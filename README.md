@@ -59,6 +59,10 @@ For a more thourough example of this, look at the sample in *samples/upload_data
 
     >> buzzdata.licenses
 
+
+## Get a list of usable Topics 
+
+    >> buzzdata.topics
   
 
 # BuzzData API 
