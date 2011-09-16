@@ -88,8 +88,28 @@ class Buzzdata
     raw_get(download_path(dataset))
   end
 
+  def create_dataset(attributes)
+    
+    # Validate attributes
+    raise BuzzData::Error, "Missing attributes" if attributes.nil?    
+    raise Buzzdata::Error, "Username is required" if param_blank?(attributes, :username)
+    raise Buzzdata::Error, "Dataset name is required" if param_blank?(attributes, :name)
+    raise Buzzdata::Error, "Dataset readme is required" if param_blank?(attributes, :name)
+    raise Buzzdata::Error, "Dataset license is required" if param_blank?(attributes, :license)
+    raise Buzzdata::Error, "Dataset topics are required" if param_blank?(attributes, :topics)
+
+    username = attributes.delete(:username)
+
+    result = post_json(url_for("#{username}/datasets"), :dataset => attributes)    
+    result['dataset']
+  end
+
   private
     
+    def param_blank?(obj, param)      
+      return (obj.nil? or obj[param].nil? or obj[param].empty?)
+    end
+
     def url_for(path)
       base_path = @base_url || "https://buzzdata.com/api/"
       "#{base_path}#{path}"
