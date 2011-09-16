@@ -94,7 +94,7 @@ To retrieve information about a dataset, simply make a GET:
 
 **GET Parameters:**
 
-* `api_key` = your API Key
+* `api_key` = your API Key  (optional - but necessary for viewing private or unpublished datasets.)
 
 **Returns JSON:**
 
@@ -147,7 +147,7 @@ Before you can upload data to a dataset, you need to create a dataset object in 
 * `dataset[public]` = (true/false) whether the dataset is public or private
 * `dataset[readme]` = the content for "About this Dataset"
 * `dataset[license]` = the license the dataset is being offered with. See *Licenses* below
-* `dataset[topics]` = the short names of the topics associated with this dataset
+* `dataset[topics]` = the ids of the topics associated with this dataset. See *Topics* below
 
 **Returns JSON:**
 
@@ -219,21 +219,32 @@ Important! You should wait a little while between polls to the job status. We re
 
 Note: If you receive a status of 'Unknown' it means the file has not begun processing yet. If you continue to poll it will move to 'created'
 
+# Topics
+
+When creating a dataset, it is necessary to supply at least once topic. To retrieve a list of topics and their ids:
+
+**GET https://buzzdata.com/api/topics**
+
+**Returns JSON:**
+
+    [
+      {"id":"agriculture","name":"Agriculture"},
+      {"id":"animals","name":"Animals"},
+      {"id":"anthropology","name":"Anthropology"},
+      ...
+    ]
+
 # Licenses
 
 When creating a dataset, it is necessary to supply a valid license for the data. You can query the available licenses by:
 
 **GET https://buzzdata.com/api/licenses**
 
-**GET Parameters:**
-
-* `api_key` = your API Key
-
 **Returns JSON:**
 
     [
       {"id":"cc0"},
       {"id":"pdm"},
-      {"id":"cc_by"}
+      {"id":"cc_by"},
       ...
     ]
