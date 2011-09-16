@@ -6,7 +6,7 @@ if ARGV.size != 1
   exit(0)
 end
 
-# Download a Dataset
+# Retrieve a Dataset's Details
 buzzdata = Buzzdata.new
 overview = buzzdata.dataset_overview(ARGV[0])
 

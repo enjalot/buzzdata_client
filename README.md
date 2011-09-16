@@ -92,6 +92,10 @@ To retrieve information about a dataset, simply make a GET:
 
 **GET https://buzzdata.com/api/:username/:dataset**
 
+**GET Parameters:**
+
+* `api_key` = your API Key
+
 **Returns JSON:**
 
     {"dataset":
