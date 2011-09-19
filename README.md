@@ -74,7 +74,13 @@ For a more thourough example of this, look at the sample in *samples/upload_data
 
 ## Delete a dataset
 
-    >> buzzdata.delete_dataset('robin/tasteless-dataset')    
+    >> buzzdata.delete_dataset('eviltrout/tasteless-dataset')    
+
+
+## Get a user's information
+
+    >> user = buzzdata.user_info('eviltrout')
+    >> puts user['name']   # Robin Ward
 
 
 ## Get a list of usable Licenses 
@@ -311,6 +317,22 @@ To delete a dataset, make a DELETE call:
 **Returns JSON:**
 
 {"id"=>"eviltrout/tasteless-dataset", "deleted"=>true}
+
+# Users
+
+To retrieve information about a particular BuzzData user, perform the following GET:
+
+**GET https://buzzdata.com/api/:username**
+
+**Returns JSON:**
+
+  {"user":
+    {"id":"eviltrout",
+     "name":"Robin Ward",
+     "description":"The Evilest Trout of them all and BuzzData Developer",
+     "location":"Toronto, Canada",
+     "avatar":"/images/avatars/b9/e987d17045c649da4de2a580e8109d655e6a12?1312292315"}
+  }
 
 
 # Topics

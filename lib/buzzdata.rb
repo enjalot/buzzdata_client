@@ -110,6 +110,11 @@ class Buzzdata
     raw_get(download_path(dataset))
   end
 
+  def user_info(username)
+    result = get_json(url_for(username))  
+    result['user']
+  end
+
   def create_dataset(attributes)
     
     # Validate attributes
