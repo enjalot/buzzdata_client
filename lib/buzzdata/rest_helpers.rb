@@ -30,6 +30,18 @@ module RestHelpers
     end
   end
 
+  def delete(url, params={})
+    params['api_key'] = @api_key
+    RestClient.delete(url, :params => params) do |response, request, result, &block|
+      case response.code
+      when 403, 404, 500
+        handle_error(response)
+      else
+        response.return!(request, result, &block)
+      end
+    end
+  end
+
   def get_json(path, params={})
     response = get(path, params)    
     JSON.parse(response.body)
@@ -37,6 +49,11 @@ module RestHelpers
 
   def post_json(path, params={})
     response = post(path, params)    
+    json = JSON.parse(response.body)
+  end
+
+  def delete_json(path, params={})
+    response = delete(path, params)    
     json = JSON.parse(response.body)
   end
   

@@ -65,6 +65,11 @@ For a more thourough example of this, look at the sample in *samples/upload_data
     >> buzzdata.clone_dataset('pete/pete-forde-s-genome')
 
 
+## Delete a dataset
+
+    >> buzzdata.delete_dataset('robin/tasteless-dataset')    
+
+
 ## Get a list of usable Licenses 
 
     >> buzzdata.licenses
@@ -252,6 +257,17 @@ You can clone another's dataset by making a post. Note the username in this case
 **Returns JSON:**
 
 It returns the same output from the *Dataset Details (Overview)* above of the completed dataset, or an error message if the dataset couldn't be cloned.
+
+## Delete a Dataset
+
+To delete a dataset, make a DELETE call:
+
+**DELETE https://buzzdata.com/api/:username/:dataset**
+
+**Returns JSON:**
+
+{"id"=>"eviltrout/tasteless-dataset", "deleted"=>true}
+
 
 # Topics
 

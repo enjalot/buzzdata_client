@@ -90,6 +90,10 @@ class Buzzdata
     result['dataset']
   end
 
+  def delete_dataset(dataset)
+    delete_json(url_for("#{dataset}"))
+  end
+
   def licenses
     get_json(url_for("licenses"))
   end
