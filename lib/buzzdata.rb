@@ -85,6 +85,11 @@ class Buzzdata
     result['dataset']
   end
 
+  def clone_dataset(dataset)
+    result = post_json(url_for("#{dataset}/clone"))
+    result['dataset']
+  end
+
   def licenses
     get_json(url_for("licenses"))
   end

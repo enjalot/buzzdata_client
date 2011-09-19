@@ -54,9 +54,16 @@ Uploads take some time to be processed. You can poll how the processing is going
 
 For a more thourough example of this, look at the sample in *samples/upload_data.rb*
 
+
 ## Publish a dataset
 
     >> buzzdata.publish_dataset('eviltrout/b-list-celebrities')
+
+
+## Clone another user's dataset
+
+    >> buzzdata.clone_dataset('pete/pete-forde-s-genome')
+
 
 ## Get a list of usable Licenses 
 
@@ -235,6 +242,16 @@ Once a dataset has an upload associated with it, you can publish it:
 **Returns JSON:**
 
 It returns the same output from the *Dataset Details (Overview)* above of the completed dataset, or an error message if the dataset couldn't be published.
+
+## Cloning a Dataset
+
+You can clone another's dataset by making a post. Note the username in this case is the user whose dataset you want to clone, not your own:
+
+**POST https://buzzdata.com/api/:username/:dataset/publish**
+
+**Returns JSON:**
+
+It returns the same output from the *Dataset Details (Overview)* above of the completed dataset, or an error message if the dataset couldn't be cloned.
 
 # Topics
 
