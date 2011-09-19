@@ -83,6 +83,13 @@ For a more thourough example of this, look at the sample in *samples/upload_data
     >> puts user['name']   # Robin Ward
 
 
+## Search BuzzData
+
+    >> buzzdata.search("pets").each do |r|
+         puts r['label']    # Outputs each search result label
+       end
+
+
 ## Get a list of usable Licenses 
 
     >> buzzdata.licenses
@@ -333,6 +340,28 @@ To retrieve information about a particular BuzzData user, perform the following 
      "location":"Toronto, Canada",
      "avatar":"/images/avatars/b9/e987d17045c649da4de2a580e8109d655e6a12?1312292315"}
   }
+
+
+# Searching BuzzData
+
+To search BuzzData, make a GET call:
+
+**GET https://buzzdata.com/api/search**
+
+**GET Parameters:**
+
+* `query` = the string you'd like to search for
+
+**Returns JSON:**
+
+  [
+    {"label":"Pets","value":"Pets","id":"pets","url":"/eviltrout/pets","cloned":false,"type":"Dataset"},
+    {"label":"Business","value":"Business","id":"business","url":"/topics/business","type":"Topic"},
+    {"label":"Momoko Price","value":"Momoko Price","id":"momoko","url":"/momoko","type":"User","icon":"http://buzzdata.s3.amazonaws.com/avatars/fe/fe361ff01695aa4741840f4f8851a6da9e2ef64c"},
+    ...
+  ]
+
+Note that while in the sample output above there is one of each Dataset, Topic and Users, a search can return many more. The type of result is based on the `type` attribute.
 
 
 # Topics

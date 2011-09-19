@@ -106,6 +106,10 @@ class Buzzdata
     get_json(url_for("topics"))
   end
 
+  def search(query)
+    get_json(url_for("search"), :query => query)  
+  end
+
   def download_data(dataset)
     raw_get(download_path(dataset))
   end
