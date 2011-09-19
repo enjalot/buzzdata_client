@@ -25,6 +25,13 @@ Using `dataset_overview` you can get an overview of a Dataset's information. It 
     >> puts ds['name']  # outputs B-List Celebrities
 
 
+## Upload History
+
+You can retrieve a list of uploaded versions of a dataset by calling `dataset_history`:
+
+    >> buzzdata.dataset_history.each {|v| puts "version #{v['version']}!" }
+
+
 ## Creating a Dataset
 
 You can use the `create_dataset` method to create a new dataset. All fields are required:
@@ -129,6 +136,25 @@ To retrieve information about a dataset, simply make a GET:
        "created_at":"2011-07-12T14:31:21-04:00",
        "data_updated_at":"2011-07-12T14:41:52-04:00"}}
 
+
+## Dataset History
+
+To retrieve a list of uploads and versions to a dataset:
+
+**GET https://buzzdata.com/api/:username/:dataset/history**
+
+**GET Paramters: **
+
+* `api_key` = your API Key  (optional - but necessary for viewing private or unpublished datasets.)
+
+**Returns JSON:**
+
+  [
+    {"version":1,"created_at":"2011-07-12T14:41:52-04:00","username":"eviltrout"},
+    {"version":2,"created_at":"2011-07-13T13:00:21-04:00","username":"eviltrout"}
+  ]
+
+
 ## Downloading Data
 
 Before you can download data, you need to create a `download_request`. If successful you will be given a
@@ -182,6 +208,7 @@ To upload data to the system, you need to create an `upload_request`. An upload 
 * `:username` = your username: ex: 'eviltrout'
 * `:dataset` = the short name (url name) of the dataset you are uploading to. For example: 'b-list-celebrities'
 
+
 **POST Parameters:**
 
 * `api_key` = your API key
@@ -192,6 +219,7 @@ To upload data to the system, you need to create an `upload_request`. An upload 
 
 * `upload_code` = a unique token that authenticates your upload
 * `url` = the endpoint for where the file should be uploaded
+
 
 ## Performing an Upload
 
@@ -212,6 +240,7 @@ After creating an `upload_request`, you can then POST your data file to be inges
 * `name` = the filename of the upload.
 * `size` = the size of the upload in bytes
 * `job_status_token` = an important 
+
 
 ## Checking your Upload Status
 
@@ -238,15 +267,21 @@ Important! You should wait a little while between polls to the job status. We re
 
 Note: If you receive a status of 'Unknown' it means the file has not begun processing yet. If you continue to poll it will move to 'created'
 
+
 ## Publishing a Dataset
 
 Once a dataset has an upload associated with it, you can publish it:
 
 **POST https://buzzdata.com/api/:username/:dataset/publish**
 
+**POST Parameters:**
+
+* `api_key` = your API Key
+
 **Returns JSON:**
 
 It returns the same output from the *Dataset Details (Overview)* above of the completed dataset, or an error message if the dataset couldn't be published.
+
 
 ## Cloning a Dataset
 
@@ -254,15 +289,24 @@ You can clone another's dataset by making a post. Note the username in this case
 
 **POST https://buzzdata.com/api/:username/:dataset/publish**
 
+**POST Parameters:**
+
+* `api_key` = your API Key
+
 **Returns JSON:**
 
 It returns the same output from the *Dataset Details (Overview)* above of the completed dataset, or an error message if the dataset couldn't be cloned.
+
 
 ## Delete a Dataset
 
 To delete a dataset, make a DELETE call:
 
 **DELETE https://buzzdata.com/api/:username/:dataset**
+
+**POST Parameters:**
+
+* `api_key` = your API Key
 
 **Returns JSON:**
 

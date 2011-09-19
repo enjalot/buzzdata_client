@@ -80,6 +80,10 @@ class Buzzdata
     result['dataset']
   end
 
+  def dataset_history(dataset)
+    get_json(url_for("#{dataset}/history"))
+  end
+
   def publish_dataset(dataset)
     result = post_json(url_for("#{dataset}/publish"))
     result['dataset']

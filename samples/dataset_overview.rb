@@ -10,6 +10,13 @@ end
 buzzdata = Buzzdata.new
 overview = buzzdata.dataset_overview(ARGV[0])
 
+puts "Dataset Details:"
 overview.each do |k, v|
   puts "#{k}: #{v}"
+end
+puts
+
+puts "Version History:"
+buzzdata.dataset_history(ARGV[0]).each do |h|
+  puts "=> #{h['version']} - Uploaded On: #{h['created_at']} by #{h['username']}"
 end
