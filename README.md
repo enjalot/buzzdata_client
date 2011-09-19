@@ -54,6 +54,9 @@ Uploads take some time to be processed. You can poll how the processing is going
 
 For a more thourough example of this, look at the sample in *samples/upload_data.rb*
 
+## Publish a dataset
+
+    >> buzzdata.publish_dataset('eviltrout/b-list-celebrities')
 
 ## Get a list of usable Licenses 
 
@@ -222,6 +225,16 @@ After a file has been uploaded, you can check out the upload's status by making 
 Important! You should wait a little while between polls to the job status. We recommend sleeping for one second in most cases.
 
 Note: If you receive a status of 'Unknown' it means the file has not begun processing yet. If you continue to poll it will move to 'created'
+
+## Publishing a Dataset
+
+Once a dataset has an upload associated with it, you can publish it:
+
+**POST https://buzzdata.com/api/:username/:dataset/publish**
+
+**Returns JSON:**
+
+It returns the same output from the *Dataset Details (Overview)* above of the completed dataset, or an error message if the dataset couldn't be published.
 
 # Topics
 

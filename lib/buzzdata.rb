@@ -80,6 +80,11 @@ class Buzzdata
     result['dataset']
   end
 
+  def publish_dataset(dataset)
+    result = post_json(url_for("#{dataset}/publish"))
+    result['dataset']
+  end
+
   def licenses
     get_json(url_for("licenses"))
   end
