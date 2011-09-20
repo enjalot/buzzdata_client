@@ -25,6 +25,14 @@ Using `dataset_overview` you can get an overview of a Dataset's information. It 
     >> puts ds['name']  # outputs B-List Celebrities
 
 
+## Listing Datasets
+
+You can view a user's datasets by calling `datasets_list`. You'll get back an array with information on their datasets.
+
+    >> datasets = buzzdata.datasets_list 'eviltrout'
+    >> datasets.each {|ds| puts ds['id'] }
+
+
 ## Upload History
 
 You can retrieve a list of uploaded versions of a dataset by calling `dataset_history`:
@@ -148,6 +156,33 @@ To retrieve information about a dataset, simply make a GET:
        "published":true,
        "created_at":"2011-07-12T14:31:21-04:00",
        "data_updated_at":"2011-07-12T14:41:52-04:00"}}
+
+
+## Listing Datasets
+
+You can view a list of any user's datasets. 
+
+**GET https://buzzdata.com/api/:username/datasets/list**
+
+**GET Parameters:**
+
+* `api_key` = your API Key  (optional - but necessary for viewing private or unpublished datasets.)
+
+**Returns JSON:**
+
+    [
+      {"id":"eviltrout/b-list-celebrities",
+        "name":"B-List Celebrities",
+        "public":true,
+        "published":true,
+        "readme":"Here's a list of B-List Celebrities that I've curated."},
+       {"id":"eviltrout/pets",
+        "name":"Pets",
+        "public":true,
+        "published":true,
+        "readme":"A list of pets by owner."}
+        ...
+    ]
 
 
 ## Dataset History

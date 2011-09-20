@@ -110,6 +110,10 @@ class Buzzdata
     get_json(url_for("search"), :query => query)  
   end
 
+  def datasets_list(username)
+    get_json(url_for("#{username}/datasets/list"))  
+  end
+
   def download_data(dataset)
     raw_get(download_path(dataset))
   end
