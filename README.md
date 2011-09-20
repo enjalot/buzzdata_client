@@ -63,7 +63,7 @@ Uploads take some time to be processed. You can poll how the processing is going
 
     >> upload.in_progress?   # true - upload is going on
 
-    (wait for some time to pass..)
+    # (wait for some time to pass..)
 
     >> upload.in_progress?   # false - upload is done!
 
@@ -197,10 +197,10 @@ To retrieve a list of uploads and versions to a dataset:
 
 **Returns JSON:**
 
-  [
-    {"version":1,"created_at":"2011-07-12T14:41:52-04:00","username":"eviltrout"},
-    {"version":2,"created_at":"2011-07-13T13:00:21-04:00","username":"eviltrout"}
-  ]
+    [
+      {"version":1,"created_at":"2011-07-12T14:41:52-04:00","username":"eviltrout"},
+      {"version":2,"created_at":"2011-07-13T13:00:21-04:00","username":"eviltrout"}
+    ]
 
 
 ## Downloading Data
@@ -358,7 +358,7 @@ To delete a dataset, make a DELETE call:
 
 **Returns JSON:**
 
-{"id"=>"eviltrout/tasteless-dataset", "deleted"=>true}
+    {"id"=>"eviltrout/tasteless-dataset", "deleted"=>true}
 
 # Users
 
@@ -368,13 +368,13 @@ To retrieve information about a particular BuzzData user, perform the following 
 
 **Returns JSON:**
 
-  {"user":
-    {"id":"eviltrout",
-     "name":"Robin Ward",
-     "description":"The Evilest Trout of them all and BuzzData Developer",
-     "location":"Toronto, Canada",
-     "avatar":"/images/avatars/b9/e987d17045c649da4de2a580e8109d655e6a12?1312292315"}
-  }
+    {"user":
+      {"id":"eviltrout",
+       "name":"Robin Ward",
+       "description":"The Evilest Trout of them all and BuzzData Developer",
+       "location":"Toronto, Canada",
+       "avatar":"/images/avatars/b9/e987d17045c649da4de2a580e8109d655e6a12?1312292315"}
+    }
 
 
 # Searching BuzzData
@@ -389,12 +389,12 @@ To search BuzzData, make a GET call:
 
 **Returns JSON:**
 
-  [
-    {"label":"Pets","value":"Pets","id":"pets","url":"/eviltrout/pets","cloned":false,"type":"Dataset"},
-    {"label":"Business","value":"Business","id":"business","url":"/topics/business","type":"Topic"},
-    {"label":"Momoko Price","value":"Momoko Price","id":"momoko","url":"/momoko","type":"User","icon":"http://buzzdata.s3.amazonaws.com/avatars/fe/fe361ff01695aa4741840f4f8851a6da9e2ef64c"},
-    ...
-  ]
+    [
+      {"label":"Pets","value":"Pets","id":"pets","url":"/eviltrout/pets","cloned":false,"type":"Dataset"},
+      {"label":"Business","value":"Business","id":"business","url":"/topics/business","type":"Topic"},
+      {"label":"Momoko Price","value":"Momoko Price","id":"momoko","url":"/momoko","type":"User","icon":"http://buzzdata.s3.amazonaws.com/avatars/fe/fe361ff01695aa4741840f4f8851a6da9e2ef64c"},
+      ...
+    ]
 
 Note that while in the sample output above there is one of each Dataset, Topic and Users, a search can return many more. The type of result is based on the `type` attribute.
 
